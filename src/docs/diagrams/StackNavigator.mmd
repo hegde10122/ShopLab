@@ -1,31 +1,23 @@
 %% File: docs/diagrams/StackNavigator.mmd
-%% Full StackNavigator Flow + Clean Architecture for ShopLab
+%% Clean & readable StackNavigator diagram for ShopLab
 
-flowchart TD
-    %% App entry
+graph LR
+    %% App Entry
     App[App.tsx] --> Stack[StackNavigator]
 
-    %% Screens
-    Stack --> Landing
-    Stack --> Login
-    Stack --> Register
-    Stack --> ForgotPassword
-    Stack --> Product
-    Stack --> Checkout
-    Stack --> OrderHistory
-    Stack --> Tabs
+    %% Navigation Flow
+    subgraph NavigationFlow["Navigation Flow"]
+        direction LR
+        Landing -->|Login| Login
+        Landing -->|Register| Register
+        Tabs --> Product
+        Product --> Checkout
+        Checkout --> OrderHistory
+    end
 
-    %% Navigation actions from Landing
-    Landing -->|Press Login| Login
-    Landing -->|Press Register| Register
-
-    %% Navigation from Tabs (example placeholder)
-    Tabs --> Product
-    Product --> Checkout
-    Checkout --> OrderHistory
-
-    %% Clean Architecture Layers
-    subgraph PresentationLayer[Presentation Layer]
+    %% Presentation Layer
+    subgraph PresentationLayer["Presentation Layer"]
+        direction TB
         Landing
         Login
         Register
@@ -36,18 +28,34 @@ flowchart TD
         Tabs
     end
 
-    subgraph DomainLayer[Domain Layer - Use Cases / Business Logic]
+    %% Domain Layer
+    subgraph DomainLayer["Domain Layer - Use Cases / Business Logic"]
         direction TB
-        DomainPlaceholder[No domain logic implemented yet]
+        DomainPlaceholder[Domain Logic Placeholder]
     end
 
-    subgraph DataLayer[Data Layer - Repositories / API / DB]
+    %% Data Layer
+    subgraph DataLayer["Data Layer - Repositories / API / DB"]
         direction TB
-        DataPlaceholder[No data access implemented yet]
+        DataPlaceholder[Data Placeholder]
     end
 
-    %% Connect Presentation to Domain & Data layers
+    %% Connect layers
     Landing --> DomainPlaceholder
     Login --> DomainPlaceholder
     Register --> DomainPlaceholder
-   
+    ForgotPassword --> DomainPlaceholder
+    Product --> DomainPlaceholder
+    Checkout --> DomainPlaceholder
+    OrderHistory --> DomainPlaceholder
+    Tabs --> DomainPlaceholder
+    DomainPlaceholder --> DataPlaceholder
+
+    %% Styling
+    classDef presentation fill:#d1e7dd,stroke:#0f5132,stroke-width:1px
+    classDef domain fill:#fff3cd,stroke:#664d03,stroke-width:1px
+    classDef data fill:#f8d7da,stroke:#842029,stroke-width:1px
+
+    class Landing,Login,Register,ForgotPassword,Product,Checkout,OrderHistory,Tabs presentation
+    class DomainPlaceholder domain
+    class DataPlaceholder data
