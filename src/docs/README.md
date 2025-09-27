@@ -82,3 +82,32 @@ yarn install
 npx expo start -c
 ```
 
+
+## Implementation Notes
+
+- Uses `react-native-responsive-screen` for responsive layout (`wp`/`hp`)
+- Shows `ActivityIndicator` during async operations
+- Resets input fields when screen gains focus (`navigation.addListener('focus')`)
+- Navigation handled via **React Navigation stack**
+- Async calls are handled with `async/await`
+- Redux Toolkit used for global state updates
+- `window.alert` is temporary; can be replaced with custom modal
+- Can be converted to TypeScript:
+  - `navigation` typed with `NativeStackScreenProps<RootStackParamList, 'Login'>`
+  - State variables typed as `string` or `boolean`
+
+## Screen Name: Landing
+
+- Purpose: Entry screen of the app; allows navigation to Login and Register
+- Libraries Used: react-native, react-navigation/native-stack, react-native-safe-area-context, react-native-responsive-screen
+- Layer: Presentation Layer
+- Domain Interaction: None (pure UI/navigation screen)
+- Data Layer Repositories: None
+
+## Screen Name: Login
+
+- Purpose: Authenticate user and navigate to main app
+- Libraries Used: react-native, react-redux, react-native-responsive-screen, react-navigation/native-stack
+- Layer: Presentation Layer
+- Domain Interaction: login(), fetchOrderHistory()
+- Data Layer Repositories: AuthRepository, OrderRepository
