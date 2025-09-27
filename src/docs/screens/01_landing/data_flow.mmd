@@ -1,0 +1,34 @@
+%% Landing Screen Data Flow & Clean Architecture Mapping for ShopLab
+
+flowchart TD
+    %% Entry point
+    AppEntry[App.tsx] --> StackNavigator[StackNavigator]
+
+    %% Landing screen
+    StackNavigator --> Landing[Landing]
+
+    %% Navigation actions
+    Landing -->|Press Login Button| Login[Login]
+    Landing -->|Press Register Button| Register[Register]
+
+    %% Clean Architecture Layers
+    subgraph PresentationLayer[Presentation Layer]
+        Landing
+        Login
+        Register
+    end
+
+    %% Note: Domain & Data layers currently unused for Landing
+    subgraph DomainLayer[Domain Layer - Use Cases / Business Logic]
+        direction TB
+        DomainPlaceholder[No domain logic yet]
+    end
+
+    subgraph DataLayer[Data Layer - Repositories / API / DB]
+        direction TB
+        DataPlaceholder[No data access yet]
+    end
+
+    %% Connections for clarity (optional, can remove if diagram looks messy)
+    Landing --> DomainPlaceholder
+    DomainPlaceholder --> DataPlaceholder
