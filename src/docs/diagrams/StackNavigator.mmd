@@ -33,12 +33,15 @@ graph LR
         direction TB
         DomainPlaceholder[Domain Logic Placeholder]
     end
-
-    %% Data Layer
-    subgraph DataLayer["Data Layer - Repositories / API / DB"]
-        direction TB
-        DataPlaceholder[Data Placeholder]
-    end
+%% Data Layer - expanded for clarity
+subgraph DataLayer["Data Layer - Repositories / API / DB"]
+    direction TB
+    AuthRepo[Auth Repository (Firebase Auth)]
+    UserRepo[User Repository (Firestore Users)]
+    ProductRepo[Product Repository (Firestore Products)]
+    OrderRepo[Order Repository (Firestore Orders)]
+    StorageService[Storage Service (Firebase Storage)]
+end
 
     %% Connect layers
     Landing --> DomainPlaceholder
