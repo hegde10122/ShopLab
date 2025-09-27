@@ -23,3 +23,4 @@ flowchart TD
   A[Landing] -->|Tap Login| B[Login Screen]
   A -->|Tap Register| C[Register Screen]
   A -->|Guest Mode| D[Tabs Navigator]
+```
