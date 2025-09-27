@@ -1,0 +1,53 @@
+%% File: docs/diagrams/StackNavigator.mmd
+%% Full StackNavigator Flow + Clean Architecture for ShopLab
+
+flowchart TD
+    %% App entry
+    App[App.tsx] --> Stack[StackNavigator]
+
+    %% Screens
+    Stack --> Landing
+    Stack --> Login
+    Stack --> Register
+    Stack --> ForgotPassword
+    Stack --> Product
+    Stack --> Checkout
+    Stack --> OrderHistory
+    Stack --> Tabs
+
+    %% Navigation actions from Landing
+    Landing -->|Press Login| Login
+    Landing -->|Press Register| Register
+
+    %% Navigation from Tabs (example placeholder)
+    Tabs --> Product
+    Product --> Checkout
+    Checkout --> OrderHistory
+
+    %% Clean Architecture Layers
+    subgraph PresentationLayer[Presentation Layer]
+        Landing
+        Login
+        Register
+        ForgotPassword
+        Product
+        Checkout
+        OrderHistory
+        Tabs
+    end
+
+    subgraph DomainLayer[Domain Layer - Use Cases / Business Logic]
+        direction TB
+        DomainPlaceholder[No domain logic implemented yet]
+    end
+
+    subgraph DataLayer[Data Layer - Repositories / API / DB]
+        direction TB
+        DataPlaceholder[No data access implemented yet]
+    end
+
+    %% Connect Presentation to Domain & Data layers
+    Landing --> DomainPlaceholder
+    Login --> DomainPlaceholder
+    Register --> DomainPlaceholder
+   
