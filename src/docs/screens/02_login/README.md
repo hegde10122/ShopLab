@@ -92,3 +92,61 @@ flowchart LR
   - State variables typed as `string` or `boolean`
 
 
+# Login Screen - LLD
+
+## 1. Purpose
+- Authenticate user with Firebase Auth
+- Fetch user’s order history
+- Persist data in Redux store
+- Navigate to `Tabs` screen on success
+
+---
+
+## 2. Dependencies
+- `utilityFunctions.js`
+  - `login(email, password)`
+  - `fetchOrderHistory(email)`
+- `store.js`
+  - `setUserName`
+  - `setUserEmail`
+  - `setUserOrderHistory`
+- External libraries:
+  - `react-redux` (`useDispatch`)
+  - `react-native-responsive-screen` (UI responsiveness)
+  - `react-navigation/native-stack` (navigation)
+
+---
+
+## 3. Flow
+1. User enters **email + password**  
+2. On press → `signIn()` runs  
+   - Calls `login(email, password)`  
+   - If successful → calls `fetchOrderHistory(email)`  
+   - Dispatches data to Redux (`setUserName`, `setUserEmail`, `setUserOrderHistory`)  
+   - Navigates → `Tabs`  
+   - Else → show alert  
+3. UI reset on `navigation.focus`
+
+---
+
+## 4. State Management
+- Local component state: `email`, `password`, `showIndicator`
+- Redux store:
+  - `user.name`
+  - `user.email`
+  - `user.orderHistory`
+
+---
+
+## 5. UI Notes
+- Inputs: Email + Password (with `secureTextEntry`)  
+- Links: Forgot password, Sign up  
+- Button: Sign In  
+- Loading: `ActivityIndicator`
+
+---
+
+## 6. Open Points (To Do)
+- Replace `window.alert` with RN `Alert` or custom modal  
+- Add client-side validation (empty fields, email format)  
+- Handle errors gracefully (network issues, Firebase errors)

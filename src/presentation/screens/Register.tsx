@@ -1,7 +1,7 @@
 
 import { NativeStackScreenProps } from "@react-navigation/native-stack";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { RootStackParamList } from "../navigation/StackNavigator";
+import { RootStackParamList } from "../navigation/types";
 
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Register'>;

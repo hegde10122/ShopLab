@@ -1,0 +1,32 @@
+%% Login Flow - Clean Architecture
+
+flowchart TB
+
+    %% Presentation Layer
+    subgraph Presentation["Presentation Layer (Screens)"]
+        LoginScreen[Login.tsx\n- UI\n- Calls uAuth hook]
+    end
+
+    %% Application Layer
+    subgraph Application["Application Layer (State Management)"]
+        useAuthHook[uAuth Hook\n- Orchestrates login flow]
+        ReduxStore[store.ts\nRedux Toolkit]
+    end
+
+    %% Domain Layer
+    subgraph Domain["Domain Layer (Interfaces & Contracts)"]
+        IAuthRepository[(IAuthRepository\nInterface)]
+    end
+
+    %% Data Layer
+    subgraph Data["Data Layer (Repositories & Firebase)"]
+        AuthRepository[FirebaseAuthRepository.ts\n- Implements IAuthRepository]
+        Firebase[(Firebase Auth\n+ Firestore)]
+    end
+
+    %% Edges
+    LoginScreen --> useAuthHook
+    useAuthHook --> IAuthRepository
+    IAuthRepository --> AuthRepository
+    AuthRepository --> Firebase
+    useAuthHook --> ReduxStore

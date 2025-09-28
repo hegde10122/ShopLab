@@ -1,14 +1,14 @@
 # Low Level Design (LLD)
 
 This document contains links to detailed design notes for each module of the project.  
-Each module is broken down into individual features/screens/tasks (nuggets).  
+Each module is broken down into individual features/screens/tasks.  
 
 ---
 
 ## 1. Auth Module
 - [Landing Screen](./screens/01_landing/README.md)
-- [Login Screen](./docs/LLD/Auth/Login.md)
-- [Register Screen](./docs/LLD/Auth/Register.md)
+- [Login Screen](./screens/02_login/README.md)
+- [Register Screen](./screens/03_register/README.md)
 
 ---
 
