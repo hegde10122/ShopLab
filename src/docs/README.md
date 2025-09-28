@@ -69,8 +69,6 @@ diagrams/ # Mermaid / UML diagrams
   - Navigation flow (Mermaid diagrams)
   - Notes
 
-This makes the project **portfolio-ready and GPT-friendly**.
-
 ---
 
 ## ⚡ Getting Started
